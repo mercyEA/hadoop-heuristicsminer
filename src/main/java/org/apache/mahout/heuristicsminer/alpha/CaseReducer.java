@@ -6,10 +6,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.hadoop.mapreduce.Reducer;
-import org.apache.mahout.hueristicsminer.message.CaseProto;
-import org.apache.mahout.hueristicsminer.message.CaseProto.Case;
-import org.apache.mahout.hueristicsminer.message.CaseProto.Event;
-
+import org.apache.mahout.heuristicsminer.message.CaseProto;
 import com.twitter.elephantbird.mapreduce.io.ProtobufWritable;
 /**
  * 
@@ -27,7 +24,7 @@ public class CaseReducer extends Reducer<ProtobufWritable<CaseProto.Case>, Proto
 		ERRORS
 	}
 	@Override
-	protected void reduce(ProtobufWritable<Case> caseValue ,Iterable<ProtobufWritable<Event>> events,Context context) throws IOException, InterruptedException {
+	protected void reduce(ProtobufWritable<CaseProto.Case> caseValue ,Iterable<ProtobufWritable<CaseProto.Event>> events,Context context) throws IOException, InterruptedException {
 		try {
 			Map<CaseProto.Event,Long> bagX = new LinkedHashMap<CaseProto.Event,Long>();	
 			Map<CaseProto.Event, List<Integer>> bagY = new LinkedHashMap<CaseProto.Event, List<Integer>>();				
@@ -48,7 +45,7 @@ public class CaseReducer extends Reducer<ProtobufWritable<CaseProto.Case>, Proto
 				}
 				i++;
 			}			
-			for (Event eventX : bagX.keySet()) {
+			for (CaseProto.Event eventX : bagX.keySet()) {
 				CaseProto.Relation.Builder relationBuilder = CaseProto.Relation.newBuilder();
 				CaseProto.RelationMetrics.Builder relationMetricsBuilder = CaseProto.RelationMetrics.newBuilder();
 				relationMetricsBuilder.setCount(bagX.get(eventX));
@@ -56,7 +53,7 @@ public class CaseReducer extends Reducer<ProtobufWritable<CaseProto.Case>, Proto
 				protoKey.set(relationBuilder.build());
 				protoValue.set(relationMetricsBuilder.build());
 				context.write(protoKey, protoValue);
-				for (Event eventY: bagY.keySet()) {
+				for (CaseProto.Event eventY: bagY.keySet()) {
 					relationBuilder = CaseProto.Relation.newBuilder();
 					relationMetricsBuilder = CaseProto.RelationMetrics.newBuilder();
 					relationBuilder.setLeftSide(eventX).setRightSide(eventY);

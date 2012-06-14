@@ -2,8 +2,8 @@ package org.apache.mahout.heuristicsminer.alpha;
 
 import java.io.IOException;
 import org.apache.hadoop.mapreduce.Reducer;
-import org.apache.mahout.hueristicsminer.message.CaseProto;
-import org.apache.mahout.hueristicsminer.message.CaseProto.BasicRelation;
+import org.apache.mahout.heuristicsminer.message.CaseProto;
+import org.apache.mahout.heuristicsminer.message.CaseProto.BasicRelation;
 
 import com.twitter.elephantbird.mapreduce.io.ProtobufWritable;
 

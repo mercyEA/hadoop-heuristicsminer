@@ -3,7 +3,7 @@ package org.apache.mahout.heuristicsminer.alpha;
 import org.apache.hadoop.conf.Configurable;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.mapreduce.Partitioner;
-import org.apache.mahout.hueristicsminer.message.CaseProto;
+import org.apache.mahout.heuristicsminer.message.CaseProto;
 
 import com.twitter.elephantbird.mapreduce.io.ProtobufWritable;
 

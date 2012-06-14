@@ -2,7 +2,7 @@ package org.apache.mahout.heuristicsminer.alpha;
 
 import org.apache.hadoop.io.WritableComparable;
 import org.apache.hadoop.io.WritableComparator;
-import org.apache.mahout.hueristicsminer.message.CaseProto;
+import org.apache.mahout.heuristicsminer.message.CaseProto;
 
 import com.twitter.elephantbird.mapreduce.io.ProtobufWritable;
 
