@@ -1,6 +1,6 @@
 package beans;
 
-option java_package = "org.apache.mahout.hueristicsminer.message";
+option java_package = "org.apache.mahout.heuristicsminer.message";
 option java_outer_classname = "CaseProto";
 message Case {
 	required string caseID = 1;
