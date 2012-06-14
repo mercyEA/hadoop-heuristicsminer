@@ -1,0 +1,36 @@
+<assembly>
+  <id>job</id>
+  <formats>
+    <format>jar</format>
+  </formats>
+  <includeBaseDirectory>false</includeBaseDirectory>
+  <dependencySets>
+    <dependencySet>
+      <unpack>true</unpack>
+      <includes>            
+      <include>org.apache.mahout:mahout-examples</include>
+      <include>org.apache.mahout:mahout-core</include>
+      <include>com.google.guava:guava</include>
+      <include>org.apache.zookeeper:zookeeper</include>
+      <include>org.apache.hbase:hbase</include>
+      <include>commons-lang:commons-lang</include>
+      <include>org.apache.mahout:hadoop-hueristicsminer</include>
+      <include>org.apache.mahout.commons:commons-cli</include> 
+       <include>com.twitter:elephant-bird</include>
+       <include>com.thoughtworks.xstream:xstream</include>
+       <include>com.google.protobuf:protobuf-java</include>
+              
+      </includes>
+    </dependencySet>
+  </dependencySets>
+    <fileSets>
+    <fileSet>
+      <directory>lib/native</directory>   
+      <includes>
+        <include>*/**</include>
+      </includes>
+      <outputDirectory>/lib/native</outputDirectory>
+    </fileSet>
+  </fileSets>
+</assembly>
+
