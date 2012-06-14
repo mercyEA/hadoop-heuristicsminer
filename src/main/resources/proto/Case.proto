@@ -1,0 +1,52 @@
+package beans;
+
+option java_package = "org.apache.mahout.hueristicsminer.message";
+option java_outer_classname = "CaseProto";
+message Case {
+	required string caseID = 1;
+    optional int64 unixTime = 2;
+}
+
+message Event {
+	required string event = 1;
+}
+
+message Evaluation {
+	required Relation relation = 1;
+	optional RelationMetrics relationMetrics = 2;	
+}
+
+message ScoredEvent {
+	required Event event = 1;
+	repeated Evaluation evaluation = 2;
+	repeated Event inputs = 3;
+	repeated Event outputs = 4;	
+	required int64 count = 5;
+}
+
+message Relation {
+	required Event leftSide = 1;
+	optional Event rightSide = 2;
+} 
+
+ enum BasicRelation {
+    DIRECT = 0;
+    NONE = 1;
+    PARALLEL = 2;
+  }
+
+message RelationMetrics {
+	optional int64 directlyPreceeds = 1 [default = 0];
+	optional int64 shortLoopDirectlyPreceeds = 2 [default = 0];
+	optional int64 eventualyPreceeds = 3 [default = 0];
+	optional int64 reverseDirectlyPreceeds = 4 [default = 0];
+	optional int64 reverseShortLoopDirectlyPreceeds = 5 [default = 0];
+	optional int64 reverseEventualyPreceeds = 6 [default = 0];
+	optional int64 count = 7 [default = 0];
+	optional double dependencyRelation = 8;
+	optional double lengthOneLoopRelation = 9;
+	optional double lengthTwoLoopRelation = 10;
+	optional BasicRelation basicRelation = 11 [default = NONE];
+	optional bool isInput = 12 [default = false];
+}
+
